@@ -1,0 +1,35 @@
+define pintarray
+	# array name, first element, last element
+	print *((integer *) $arg0 + ($arg1-1) )@($arg2-$arg1+1)
+end
+
+define pdoublearray
+	# array name, first element, last element
+	print *((double *) $arg0 + ($arg1-1) )@($arg2-$arg1+1)
+end
+
+define pboolarray
+	# array name, first element, last element
+	print *((bool *) $arg0 + ($arg1-1) )@($arg2-$arg1+1)
+end
+
+define pexfemnodes
+	set $st = (*((integer *) m_eptr + ($arg0-1) )@1)(1)
+	set $en = (*((integer *) m_eptr + ($arg0) )@1)(1)
+	while $st .lt. $en
+		set $nod = (*((integer *) m_eind + ($st-1) )@1)(1)
+		print $nod
+		print *((double *) m_nodes + ((2*$nod)-2) )@2
+		set $st = $st + 1
+	end
+end
+define pintmatrix
+	# array name, size fd, first element fd, last element fd, elem sd
+	print *((integer *) $arg0 + (($arg1)*($arg4-1)) )@($arg3-$arg2+1)
+end
+
+define pdoublematrix
+	# array name, size fd, first element fd, last element fd, elem sd
+	print *((double *) $arg0 + (($arg1)*($arg4-1)) )@($arg3-$arg2+1)
+end
+

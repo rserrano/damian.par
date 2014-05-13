@@ -1,0 +1,3 @@
+- Add distorted elements. (check which is the best way).
+- Delete extra checks in communicator and mesh_utils, (they make everything slower).
+
