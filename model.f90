@@ -633,14 +633,16 @@ subroutine sum_reactanchors(u)
         real*8, dimension(:), intent(inout) :: u
         integer, dimension(6) :: dofs
         integer :: i
+        real*8, dimension(2) :: avg
         if ( .NOT. allocated(m_hanging) ) then
                 return
         end if
         do i = 1, size(m_hanging, 2)
         dofs(2:6:2) = 2*m_hanging(:,i)
         dofs(1:5:2) = dofs(2:6:2) - 1
-        u(dofs(3:4)) = u(dofs(3:4)) + u(dofs(1:2))/2.0D0
-        u(dofs(5:6)) = u(dofs(5:6)) + u(dofs(1:2))/2.0D0
+        red = u(dofs(1:2))-(u(dofs(3:4)) + u(dofs(5:6)))/2.0D0
+        u(dofs(3:4)) = u(dofs(3:4)) + red
+        u(dofs(5:6)) = u(dofs(5:6)) + red
         end do
 end subroutine
 
